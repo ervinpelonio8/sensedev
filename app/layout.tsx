@@ -15,8 +15,8 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Your Site Title",
-  description: "Your site description",
+  title: "SenseDev OPC",
+  description: "SenseDev OPC Website",
 };
 
 export default function RootLayout({
