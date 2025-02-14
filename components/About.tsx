@@ -25,8 +25,8 @@ const coreValues = [
 
 const About = () => {
   return (
-    <section className="bg-destructive-foreground py-16 px-8">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section className="bg-destructive-foreground py-16 px-4 md:px-8 w-full">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Column - Text */}
         <div>
           <h2 className="font-heading text-3xl font-bold text-primary">
@@ -79,7 +79,7 @@ const About = () => {
       </div>
 
       {/* Core Values */}
-      <div className="mt-12 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+      <div className="mt-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
         {coreValues.map((value, index) => (
           <div key={index} className="p-6 bg-card shadow-lg rounded-lg">
             <h3 className="text-xl font-bold text-primary font-heading">
