@@ -46,7 +46,7 @@ const productSlides = [
 
 const Products = () => {
   return (
-    <section className="bg-background py-16 px-8">
+    <section className="bg-primary py-16 px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Column - Carousel for md+ screens, Text for mobile */}
         <div className="md:order-1 order-2">
@@ -66,7 +66,7 @@ const Products = () => {
                       <h3 className="font-heading text-xl font-bold text-primary mt-4">
                         {product.name}
                       </h3>
-                      <p className="text-foreground text-center mt-2">
+                      <p className="text-primary text-center mt-2">
                         {product.description}
                       </p>
                     </CardContent>
@@ -81,10 +81,10 @@ const Products = () => {
 
         {/* Right Column - Text for md+ screens, Carousel for mobile */}
         <div className="md:order-2 order-1">
-          <h2 className="font-heading text-3xl font-bold text-primary">
+          <h2 className="font-heading text-3xl font-bold text-primary-foreground">
             ⚙️ Reliable Industrial Solutions for Every Process
           </h2>
-          <p className="mt-4 text-lg text-foreground">
+          <p className="mt-4 text-lg text-primary-foreground">
             From <strong>process controllers</strong> to{" "}
             <strong>industrial sensors</strong>, we provide high-quality
             equipment that ensures precision, efficiency, and automation in
@@ -93,7 +93,10 @@ const Products = () => {
 
           <div className="mt-6 space-y-4">
             {productFeatures.map((feature, index) => (
-              <p key={index} className="flex items-center">
+              <p
+                key={index}
+                className="flex items-center text-primary-foreground"
+              >
                 ✅ <span className="ml-2">{feature}</span>
               </p>
             ))}
