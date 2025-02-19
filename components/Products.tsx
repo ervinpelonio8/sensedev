@@ -46,7 +46,7 @@ const productSlides = [
 
 const Products = () => {
   return (
-    <section className="bg-primary py-16 px-8">
+    <section className="bg-primary py-16 px-8" id="products">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Column - Carousel for md+ screens, Text for mobile */}
         <div className="md:order-1 order-2">

@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, ArrowRight } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/products", label: "Products" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/#about", label: "About" },
+  { href: "/#products", label: "Products" },
 ];
 
 const Header = () => {
@@ -15,7 +14,7 @@ const Header = () => {
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center ml-6">
-          <Image src="/logo.png" alt="Logo" width={200} height={120} />
+          <Image src="/logo.png" alt="Logo" width={180} height={100} />
         </Link>
 
         {/* Desktop Navigation */}
@@ -29,6 +28,13 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/#contact"
+            className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-heading font-medium hover:bg-secondary/90 transition-colors"
+          >
+            Contact Us
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </nav>
 
         {/* Mobile Navigation */}
@@ -47,6 +53,13 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/#contact"
+                className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-lg font-heading text-lg font-medium hover:bg-secondary/90 transition-colors"
+              >
+                Contact Us
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>

@@ -25,7 +25,10 @@ const coreValues = [
 
 const About = () => {
   return (
-    <section className="bg-destructive-foreground py-16 px-4 md:px-8 w-full">
+    <section
+      className="bg-destructive-foreground py-16 px-4 md:px-8 w-full"
+      id="about"
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Column - Text */}
         <div>
