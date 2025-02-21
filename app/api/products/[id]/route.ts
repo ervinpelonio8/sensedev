@@ -1,30 +1,35 @@
-import { connectToDB } from "@/utils/database"
-import Product from "@/models/Product"
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { connectToDB } from "@/utils/database";
+import Product from "@/models/Product";
+import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
-import mongoose from "mongoose"
+const isValidObjectId = (id: string) => mongoose.Types.ObjectId.isValid(id);
 
-const isValidObjectId = (id: string) => mongoose.Types.ObjectId.isValid(id)
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    await connectToDB()
+    await connectToDB();
+    
+    const id = (await params).id;
 
-    const { id } = req.query
-
-    if (!isValidObjectId(id as string)) {
-      return res.status(400).json({ error: "Invalid Product ID" })
+    if (!isValidObjectId(id)) {
+      return NextResponse.json({ error: "Invalid Product ID" }, { status: 400 });
     }
 
-    const product = await Product.findById(id)
+    const product = await Product.findById(id);
 
     if (!product) {
-      return res.status(404).json({ error: "Product not found" })
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
     }
 
-    return res.status(200).json(product)
+    return NextResponse.json(product);
   } catch (error) {
-    console.error("Error fetching product:", error)
-    return res.status(500).json({ error: "Failed to fetch product" })
+    console.error("Error fetching product:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch product" },
+      { status: 500 }
+    );
   }
 }
