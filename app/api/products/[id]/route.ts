@@ -1,29 +1,30 @@
 import { connectToDB } from "@/utils/database"
 import Product from "@/models/Product"
-import { type NextRequest, NextResponse } from "next/server"
+import type { NextApiRequest, NextApiResponse } from 'next'
 
 import mongoose from "mongoose"
 
 const isValidObjectId = (id: string) => mongoose.Types.ObjectId.isValid(id)
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     await connectToDB()
 
-    if (!isValidObjectId(params.id)) {
-      return NextResponse.json({ error: "Invalid Product ID" }, { status: 400 })
+    const { id } = req.query
+
+    if (!isValidObjectId(id as string)) {
+      return res.status(400).json({ error: "Invalid Product ID" })
     }
 
-    const product = await Product.findById(params.id)
+    const product = await Product.findById(id)
 
     if (!product) {
-      return NextResponse.json({ error: "Product not found" }, { status: 404 })
+      return res.status(404).json({ error: "Product not found" })
     }
 
-    return NextResponse.json(product)
+    return res.status(200).json(product)
   } catch (error) {
     console.error("Error fetching product:", error)
-    return NextResponse.json({ error: "Failed to fetch product" }, { status: 500 })
+    return res.status(500).json({ error: "Failed to fetch product" })
   }
 }
-
