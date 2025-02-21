@@ -50,7 +50,7 @@ const Products = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Column - Carousel for md+ screens, Text for mobile */}
         <div className="md:order-1 order-2">
-          <Carousel className="w-full max-w-lg mx-auto">
+          <Carousel className="w-full max-w-[85%] mx-auto">
             <CarouselContent>
               {productSlides.map((product, index) => (
                 <CarouselItem key={index}>
@@ -74,8 +74,8 @@ const Products = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="text-primary hover:bg-secondary/90" />
+            <CarouselNext className="text-primary hover:bg-secondary/90" />
           </Carousel>
         </div>
 
