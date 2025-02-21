@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       await mkdir(publicPath, { recursive: true });
     } catch (error) {
       // Ignore error if directory already exists
-      if ((error as any).code !== 'EEXIST') {
+      if ((error as NodeJS.ErrnoException).code !== 'EEXIST') {
         throw error;
       }
     }

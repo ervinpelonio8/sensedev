@@ -8,8 +8,10 @@ import { Label } from "@/components/ui/label";
 import Tiptap, { TiptapRef } from "@/components/Tiptap";
 import ImageUpload, { ImageUploadRef } from "@/components/ImageUpload";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function AddProductPage() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const imageUploadRef = useRef<ImageUploadRef>(null);
   const tiptapRef = useRef<TiptapRef>(null);
@@ -93,10 +95,39 @@ export default function AddProductPage() {
     setProductData((prev) => ({ ...prev, imageFiles: files }));
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("/api/admin/logout", {
+        method: "POST",
+      });
+
+      if (!response.ok) {
+        throw new Error("Logout failed");
+      }
+
+      router.push("/admin");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      toast.error("Logout failed");
+    }
+  };
+
   return (
     <>
       <Header />
       <main className="container mx-auto px-4 py-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-3xl font-heading font-bold text-primary">
+            Add New Product
+          </h1>
+          <Button
+            variant="outline"
+            onClick={handleLogout}
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          >
+            Logout
+          </Button>
+        </div>
         <Card>
           <CardContent className="p-6">
             <h1 className="text-3xl font-heading font-bold text-primary mb-8 mx-auto text-center">
