@@ -8,17 +8,16 @@ const isValidObjectId = (id: string) => mongoose.Types.ObjectId.isValid(id);
 
 export async function GET(
   req: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
-  console.log("This is it pancit!");
   try {
     await connectToDB();
 
-    if (!isValidObjectId(params.id)) {
+    if (!isValidObjectId(context.params.id)) {
       return NextResponse.json({ error: "Invalid Product ID" }, { status: 400 });
     }
 
-    const product = await Product.findById(params.id);
+    const product = await Product.findById(context.params.id);
 
     if (!product) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
